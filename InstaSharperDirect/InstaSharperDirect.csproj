@@ -1,0 +1,203 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{8039E7E6-21BF-4271-9C96-FE37D06ECE1D}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>InstaSharperDirect</RootNamespace>
+    <AssemblyName>InstaSharperDirect</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.10.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="API\Builder\IInstaApiBuilder.cs" />
+    <Compile Include="API\Builder\InstaApiBuilder.cs" />
+    <Compile Include="API\IInstaApi.cs" />
+    <Compile Include="API\InstaApi.cs" />
+    <Compile Include="API\InstaApiConstants.cs" />
+    <Compile Include="Classes\Android\DeviceInfo\AndroidDevice.cs" />
+    <Compile Include="Classes\Android\DeviceInfo\AndroidDeviceGenerator.cs" />
+    <Compile Include="Classes\Android\DeviceInfo\AndroidDevices.cs" />
+    <Compile Include="Classes\Android\DeviceInfo\AndroidVersion.cs" />
+    <Compile Include="Classes\Android\DeviceInfo\ApiRequestMessage.cs" />
+    <Compile Include="Classes\HttpRequestProcessor.cs" />
+    <Compile Include="Classes\IHttpRequestProcessor.cs" />
+    <Compile Include="Classes\IResult.cs" />
+    <Compile Include="Classes\Models\CheckPointType.cs" />
+    <Compile Include="Classes\Models\Dimensions.cs" />
+    <Compile Include="Classes\Models\Images.cs" />
+    <Compile Include="Classes\Models\InstaActivityFeed.cs" />
+    <Compile Include="Classes\Models\InstaCaption.cs" />
+    <Compile Include="Classes\Models\InstaCarousel.cs" />
+    <Compile Include="Classes\Models\InstaCarouselItem.cs" />
+    <Compile Include="Classes\Models\InstaComment.cs" />
+    <Compile Include="Classes\Models\InstaCommentList.cs" />
+    <Compile Include="Classes\Models\InstaContentType.cs" />
+    <Compile Include="Classes\Models\InstaDirectInbox.cs" />
+    <Compile Include="Classes\Models\InstaDirectInboxContainer.cs" />
+    <Compile Include="Classes\Models\InstaDirectInboxItem.cs" />
+    <Compile Include="Classes\Models\InstaDirectInboxSubscription.cs" />
+    <Compile Include="Classes\Models\InstaDirectInboxThread.cs" />
+    <Compile Include="Classes\Models\InstaDirectThreadItemType.cs" />
+    <Compile Include="Classes\Models\InstaDirectThreadType.cs" />
+    <Compile Include="Classes\Models\InstaFeed.cs" />
+    <Compile Include="Classes\Models\InstaFriendshipStatus.cs" />
+    <Compile Include="Classes\Models\InstaInlineFollow.cs" />
+    <Compile Include="Classes\Models\InstaLink.cs" />
+    <Compile Include="Classes\Models\InstaLocation.cs" />
+    <Compile Include="Classes\Models\InstaMedia.cs" />
+    <Compile Include="Classes\Models\InstaMediaList.cs" />
+    <Compile Include="Classes\Models\InstaMediaType.cs" />
+    <Compile Include="Classes\Models\InstaPosition.cs" />
+    <Compile Include="Classes\Models\InstaRecentActivityFeed.cs" />
+    <Compile Include="Classes\Models\InstaRecipients.cs" />
+    <Compile Include="Classes\Models\InstaStory.cs" />
+    <Compile Include="Classes\Models\InstaStoryItem.cs" />
+    <Compile Include="Classes\Models\InstaStoryMedia.cs" />
+    <Compile Include="Classes\Models\InstaStoryTray.cs" />
+    <Compile Include="Classes\Models\InstaUser.cs" />
+    <Compile Include="Classes\Models\InstaUserList.cs" />
+    <Compile Include="Classes\Models\InstaUserShort.cs" />
+    <Compile Include="Classes\Models\InstaUserShortList.cs" />
+    <Compile Include="Classes\Models\InstaUserTag.cs" />
+    <Compile Include="Classes\Models\Likes.cs" />
+    <Compile Include="Classes\Models\MediaImage.cs" />
+    <Compile Include="Classes\Models\MediaVideo.cs" />
+    <Compile Include="Classes\ResponseType.cs" />
+    <Compile Include="Classes\ResponseWrappers\BadStatusErrorsResponse.cs" />
+    <Compile Include="Classes\ResponseWrappers\BadStatusResponse.cs" />
+    <Compile Include="Classes\ResponseWrappers\BaseResponse\BaseLoadableResponse.cs" />
+    <Compile Include="Classes\ResponseWrappers\BaseResponse\BaseStatusResponse.cs" />
+    <Compile Include="Classes\ResponseWrappers\DeleteResponse.cs" />
+    <Compile Include="Classes\ResponseWrappers\FollowedByResponse.cs" />
+    <Compile Include="Classes\ResponseWrappers\ImageResponse.cs" />
+    <Compile Include="Classes\ResponseWrappers\ImagesResponse.cs" />
+    <Compile Include="Classes\ResponseWrappers\InstaCaptionResponse.cs" />
+    <Compile Include="Classes\ResponseWrappers\InstaCarouselItemResponse.cs" />
+    <Compile Include="Classes\ResponseWrappers\InstaCarouselResponse.cs" />
+    <Compile Include="Classes\ResponseWrappers\InstaCommentListResponse.cs" />
+    <Compile Include="Classes\ResponseWrappers\InstaCommentResponse.cs" />
+    <Compile Include="Classes\ResponseWrappers\InstaCurrentUserResponse.cs" />
+    <Compile Include="Classes\ResponseWrappers\InstaDirectInboxContainerResponse.cs" />
+    <Compile Include="Classes\ResponseWrappers\InstaDirectInboxItemResponse.cs" />
+    <Compile Include="Classes\ResponseWrappers\InstaDirectInboxResponse.cs" />
+    <Compile Include="Classes\ResponseWrappers\InstaDirectInboxSubscriptionResponse.cs" />
+    <Compile Include="Classes\ResponseWrappers\InstaDirectInboxThreadResponse.cs" />
+    <Compile Include="Classes\ResponseWrappers\InstaFeedResponse.cs" />
+    <Compile Include="Classes\ResponseWrappers\InstaFriendshipStatusResponse.cs" />
+    <Compile Include="Classes\ResponseWrappers\InstaImageCandidatesResponse.cs" />
+    <Compile Include="Classes\ResponseWrappers\InstaInlineFollowResponse.cs" />
+    <Compile Include="Classes\ResponseWrappers\InstaLinkResponse.cs" />
+    <Compile Include="Classes\ResponseWrappers\InstaLoginResponse.cs" />
+    <Compile Include="Classes\ResponseWrappers\InstaMediaItemResponse.cs" />
+    <Compile Include="Classes\ResponseWrappers\InstaMediaLikersResponse.cs" />
+    <Compile Include="Classes\ResponseWrappers\InstaMediaListResponse.cs" />
+    <Compile Include="Classes\ResponseWrappers\InstaRecentActivityFeedResponse.cs" />
+    <Compile Include="Classes\ResponseWrappers\InstaRecentActivityResponse.cs" />
+    <Compile Include="Classes\ResponseWrappers\InstaRecentActivityStoryItemResponse.cs" />
+    <Compile Include="Classes\ResponseWrappers\InstaRecipientsResponse.cs" />
+    <Compile Include="Classes\ResponseWrappers\InstaSearchUserResponse.cs" />
+    <Compile Include="Classes\ResponseWrappers\InstaStoryItemResponse.cs" />
+    <Compile Include="Classes\ResponseWrappers\InstaStoryMediaResponse.cs" />
+    <Compile Include="Classes\ResponseWrappers\InstaStoryResponse.cs" />
+    <Compile Include="Classes\ResponseWrappers\InstaStoryTrayResponse.cs" />
+    <Compile Include="Classes\ResponseWrappers\InstaTagFeedResponse.cs" />
+    <Compile Include="Classes\ResponseWrappers\InstaUserListResponse.cs" />
+    <Compile Include="Classes\ResponseWrappers\InstaUserListShortResponse.cs" />
+    <Compile Include="Classes\ResponseWrappers\InstaUserResponse.cs" />
+    <Compile Include="Classes\ResponseWrappers\InstaUserShortResponse.cs" />
+    <Compile Include="Classes\ResponseWrappers\InstaUserTagListResponse.cs" />
+    <Compile Include="Classes\ResponseWrappers\InstaUserTagResponse.cs" />
+    <Compile Include="Classes\ResponseWrappers\InstaVideoCandidatesResponse.cs" />
+    <Compile Include="Classes\ResponseWrappers\MessageErrorsResponse.cs" />
+    <Compile Include="Classes\Result.cs" />
+    <Compile Include="Classes\ResultInfo.cs" />
+    <Compile Include="Classes\UserSessionData.cs" />
+    <Compile Include="Converters\ConvertersFabric.cs" />
+    <Compile Include="Converters\InstaCaptionConverter.cs" />
+    <Compile Include="Converters\InstaCarouselConverter.cs" />
+    <Compile Include="Converters\InstaCarouselItemConverter.cs" />
+    <Compile Include="Converters\InstaCommentConverter.cs" />
+    <Compile Include="Converters\InstaCommentListConverter.cs" />
+    <Compile Include="Converters\InstaDirectInboxConverter.cs" />
+    <Compile Include="Converters\InstaDirectInboxSubscriptionConverter.cs" />
+    <Compile Include="Converters\InstaDirectThreadConverter.cs" />
+    <Compile Include="Converters\InstaDirectThreadItemConverter.cs" />
+    <Compile Include="Converters\InstaFeedConverter.cs" />
+    <Compile Include="Converters\InstaFriendshipStatusConverter.cs" />
+    <Compile Include="Converters\InstaMediaConverter.cs" />
+    <Compile Include="Converters\InstaMediaImageConverter.cs" />
+    <Compile Include="Converters\InstaMediaListConverter.cs" />
+    <Compile Include="Converters\InstaRecentActivityConverter.cs" />
+    <Compile Include="Converters\InstaRecipientsConverter.cs" />
+    <Compile Include="Converters\InstaStoryConverter.cs" />
+    <Compile Include="Converters\InstaStoryItemConverter.cs" />
+    <Compile Include="Converters\InstaStoryMediaConverter.cs" />
+    <Compile Include="Converters\InstaStoryTrayConverter.cs" />
+    <Compile Include="Converters\InstaUsersConverter.cs" />
+    <Compile Include="Converters\InstaUserShortConverter.cs" />
+    <Compile Include="Converters\InstaUserTagConverter.cs" />
+    <Compile Include="Converters\IObjectConverter.cs" />
+    <Compile Include="Converters\Json\InstaCommentDataConverter.cs" />
+    <Compile Include="Converters\Json\InstaFeedResponseDataConverter.cs" />
+    <Compile Include="Converters\Json\InstaFriendShipDataConverter.cs" />
+    <Compile Include="Converters\Json\InstaMediaListDataConverter.cs" />
+    <Compile Include="Converters\Json\InstaRecentActivityConverter.cs" />
+    <Compile Include="Converters\Json\InstaRecipientsDataConverter.cs" />
+    <Compile Include="Converters\Json\InstaThreadDataConverter.cs" />
+    <Compile Include="Helpers\CryptoHelper.cs" />
+    <Compile Include="Helpers\DateTimeHelper.cs" />
+    <Compile Include="Helpers\HttpHelper.cs" />
+    <Compile Include="Helpers\InstaApiHelper.cs" />
+    <Compile Include="Helpers\InstaProxy.cs" />
+    <Compile Include="Helpers\UriCreator.cs" />
+    <Compile Include="Logger\DebugLogger.cs" />
+    <Compile Include="Logger\ILogger.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
