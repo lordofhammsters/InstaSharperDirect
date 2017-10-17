@@ -585,10 +585,10 @@ namespace InstaSharper.API
 
                 var response = await _httpRequestProcessor.SendAsync(request);
                 var json = await response.Content.ReadAsStringAsync();
+
                 if (response.StatusCode == HttpStatusCode.OK)
-                {
-                    
-                }
+                    return Result.Success(true);
+                
                 var status = GetBadStatusFromJsonString(json);
                 return Result.Fail<bool>(status.Message);
             }
