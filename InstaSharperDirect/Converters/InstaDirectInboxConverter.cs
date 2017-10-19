@@ -14,7 +14,8 @@ namespace InstaSharper.Converters
             var inbox = new InstaDirectInboxContainer
             {
                 PendingRequestsCount = SourceObject.PendingRequestsCount,
-                SeqId = SourceObject.SeqId
+                SeqId = SourceObject.SeqId,
+                PendingUsers = new List<InstaUserShort>()
             };
             if (SourceObject.Subscription != null)
             {
@@ -40,14 +41,15 @@ namespace InstaSharper.Converters
                     }
                 }
             }
-            if (SourceObject.PendingUsers == null || SourceObject.PendingUsers.Count <= 0) return inbox;
+            if (SourceObject.PendingUsers == null || SourceObject.PendingUsers.Count <= 0)
+                return inbox;
+            
+            foreach (var user in SourceObject.PendingUsers)
             {
-                foreach (var user in SourceObject.PendingUsers)
-                {
-                    var converter = ConvertersFabric.GetUserShortConverter(user);
-                    inbox.PendingUsers.Add(converter.Convert());
-                }
+                var converter = ConvertersFabric.GetUserShortConverter(user);
+                inbox.PendingUsers.Add(converter.Convert());
             }
+            
             return inbox;
         }
     }

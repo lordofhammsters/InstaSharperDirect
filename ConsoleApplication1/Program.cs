@@ -18,7 +18,7 @@ namespace ConsoleApplication1
         {
             var api =
                new InstaApiBuilder()
-                   .SetUser(new UserSessionData() { UserName = "smilik73", Password = "123qweasd" })
+                   .SetUser(new UserSessionData() { UserName = "lordofhammsters", Password = "123qweasd" })
                    .SetRequestDelay(TimeSpan.FromSeconds(3))
                    .Build();
 
@@ -46,6 +46,12 @@ namespace ConsoleApplication1
                     Console.WriteLine(message.Text);
                 }
             }
+
+            //var medias = await api.GetUserMediaByPkAsync("pk", 1);
+            //if (!medias.Succeeded)
+            //    return;
+
+
         }
     }
 }

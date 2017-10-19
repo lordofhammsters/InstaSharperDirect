@@ -56,6 +56,8 @@ namespace InstaSharper.API
         /// </returns>
         Task<IResult<InstaMediaList>> GetUserMediaAsync(string username, int maxPages = 0);
 
+        Task<IResult<InstaMediaList>> GetUserMediaByPkAsync(string username, int maxPages = 0);
+
         /// <summary>
         ///     Get media by its id asynchronously
         /// </summary>

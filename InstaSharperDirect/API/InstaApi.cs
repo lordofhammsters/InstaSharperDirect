@@ -237,6 +237,42 @@ namespace InstaSharper.API
             return Result.Fail(GetBadStatusFromJsonString(json).Message, (InstaMediaList) null);
         }
 
+        public async Task<IResult<InstaMediaList>> GetUserMediaByPkAsync(string userPk, int maxPages = 0)
+        {
+            ValidateUser();
+            if (maxPages == 0) maxPages = int.MaxValue;
+            //var user = await GetUserAsync(username);
+            //if (!user.Succeeded) return Result.Fail<InstaMediaList>("Unable to get current user");
+            var instaUri = UriCreator.GetUserMediaListUri(userPk);
+            var request = HttpHelper.GetDefaultRequest(HttpMethod.Get, instaUri, _deviceInfo);
+            var response = await _httpRequestProcessor.SendAsync(request);
+            var json = await response.Content.ReadAsStringAsync();
+            if (response.StatusCode == HttpStatusCode.OK)
+            {
+                var mediaResponse = JsonConvert.DeserializeObject<InstaMediaListResponse>(json,
+                    new InstaMediaListDataConverter());
+                var moreAvailable = mediaResponse.MoreAvailable;
+                var converter = ConvertersFabric.GetMediaListConverter(mediaResponse);
+                var mediaList = converter.Convert();
+                mediaList.Pages++;
+                var nextId = mediaResponse.NextMaxId;
+                while (moreAvailable && mediaList.Pages < maxPages)
+                {
+                    instaUri = UriCreator.GetMediaListWithMaxIdUri(userPk, nextId);
+                    var nextMedia = await GetUserMediaListWithMaxIdAsync(instaUri);
+                    mediaList.Pages++;
+                    if (!nextMedia.Succeeded)
+                        Result.Success($"Not all pages were downloaded: {nextMedia.Info.Message}", mediaList);
+                    nextId = nextMedia.Value.NextMaxId;
+                    moreAvailable = nextMedia.Value.MoreAvailable;
+                    converter = ConvertersFabric.GetMediaListConverter(nextMedia.Value);
+                    mediaList.AddRange(converter.Convert());
+                }
+                return Result.Success(mediaList);
+            }
+            return Result.Fail(GetBadStatusFromJsonString(json).Message, (InstaMediaList)null);
+        }
+
         public async Task<IResult<InstaMedia>> GetMediaByIdAsync(string mediaId)
         {
             ValidateUser();
