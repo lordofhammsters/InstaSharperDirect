@@ -159,7 +159,7 @@ namespace InstaSharper.API
         Task<IResult<InstaDirectInboxThread>> GetDirectInboxThreadAsync(string threadId);
 
 
-        Task<IResult<bool>> SendDirectMessage(string recipients, string threadIds, string text);
+        Task<IResult<InstaDirectInboxThreadList>> SendDirectMessage(string recipients, string threadIds, string text);
 
         /// <summary>
         ///     Get recent recipients (threads and users) asynchronously

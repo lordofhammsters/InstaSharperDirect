@@ -26,31 +26,44 @@ namespace ConsoleApplication1
             if (!login.Succeeded)
                 throw new Exception(login.Info.Message);
 
-            var directInbox = await api.GetDirectInboxAsync();
-            if (!directInbox.Succeeded)
-                throw new Exception(directInbox.Info.Message);
+            //var user = await api.GetCurrentUserAsync();
+            //if (!user.Succeeded)
+            //    throw new Exception(user.Info.Message);
 
-            var threads = directInbox.Value.Inbox.Threads;
+            //var directInbox = await api.GetDirectInboxAsync();
+            //if (!directInbox.Succeeded)
+            //    throw new Exception(directInbox.Info.Message);
 
-            if (threads == null || threads.Count == 0)
-                return;
+            //var threads = directInbox.Value.Inbox.Threads;
 
-            foreach (var thread in threads.Where(x => !x.IsSpam))
-            {
-                var th = await api.GetDirectInboxThreadAsync(thread.ThreadId);
-                if (!th.Succeeded)
-                    continue;
+            //if (threads == null || threads.Count == 0)
+            //    return;
 
-                foreach (var message in th.Value.Items)
-                {
-                    Console.WriteLine(message.Text);
-                }
-            }
+            //foreach (var thread in threads.Where(x => !x.IsSpam))
+            //{
+            //    var th = await api.GetDirectInboxThreadAsync(thread.ThreadId);
+            //    if (!th.Succeeded)
+            //        continue;
+
+            //    foreach (var message in th.Value.Items)
+            //    {
+            //        Console.WriteLine(message.Text);
+            //    }
+            //}
 
             //var medias = await api.GetUserMediaByPkAsync("pk", 1);
             //if (!medias.Succeeded)
             //    return;
 
+            var result = await api.SendDirectMessage("6157611363", null, "test123");
+            if (result.Succeeded)
+            {
+                var thread = result.Value[0];
+
+                //thread.ThreadId
+                //thread.Title
+                //thread.Items[0].ItemId
+            }
 
         }
     }

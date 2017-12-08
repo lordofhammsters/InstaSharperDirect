@@ -131,6 +131,7 @@
     <Compile Include="Classes\ResponseWrappers\InstaRecentActivityStoryItemResponse.cs" />
     <Compile Include="Classes\ResponseWrappers\InstaRecipientsResponse.cs" />
     <Compile Include="Classes\ResponseWrappers\InstaSearchUserResponse.cs" />
+    <Compile Include="Classes\ResponseWrappers\InstaSendDirectMessageResponse.cs" />
     <Compile Include="Classes\ResponseWrappers\InstaStoryItemResponse.cs" />
     <Compile Include="Classes\ResponseWrappers\InstaStoryMediaResponse.cs" />
     <Compile Include="Classes\ResponseWrappers\InstaStoryResponse.cs" />

@@ -593,7 +593,7 @@ namespace InstaSharper.API
             }
         }
 
-        public async Task<IResult<bool>> SendDirectMessage(string recipients, string threadIds, string text)
+        public async Task<IResult<InstaDirectInboxThreadList>> SendDirectMessage(string recipients, string threadIds, string text)
         {
             ValidateUser();
             ValidateLoggedIn();
@@ -615,7 +615,7 @@ namespace InstaSharper.API
                     fields.Add("thread_ids", "[" + threadIds + "]");
                 }
                 else
-                    return Result.Fail<bool>("Please provide at least one recipient or thread.");
+                    return Result.Fail<InstaDirectInboxThreadList>("Please provide at least one recipient or thread.");
 
                 request.Content = new FormUrlEncodedContent(fields);
 
@@ -623,15 +623,21 @@ namespace InstaSharper.API
                 var json = await response.Content.ReadAsStringAsync();
 
                 if (response.StatusCode == HttpStatusCode.OK)
-                    return Result.Success(true);
-                
+                {
+                    var result = JsonConvert.DeserializeObject<InstaSendDirectMessageResponse>(json);
+                    if (!result.IsOk()) return Result.Fail<InstaDirectInboxThreadList>(result.Status);
+
+                    var threads = new InstaDirectInboxThreadList();
+                    threads.AddRange(result.Threads.Select(thread => ConvertersFabric.GetDirectThreadConverter(thread).Convert()));
+                    return Result.Success(threads);
+                }
                 var status = GetBadStatusFromJsonString(json);
-                return Result.Fail<bool>(status.Message);
+                return Result.Fail<InstaDirectInboxThreadList>(status.Message);
             }
             catch (Exception exception)
             {
                 LogException(exception);
-                return Result.Fail<bool>(exception);
+                return Result.Fail<InstaDirectInboxThreadList>(exception);
             }
         }
 
