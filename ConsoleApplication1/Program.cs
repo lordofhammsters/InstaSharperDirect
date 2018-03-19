@@ -1,12 +1,14 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 using InstaSharper.API.Builder;
 using InstaSharper.Classes;
 
 namespace ConsoleApplication1
 {
-    public class Program
+    class Program
     {
         public static void Main(string[] args)
         {
@@ -17,8 +19,8 @@ namespace ConsoleApplication1
         public static async Task MainAsync(string[] args)
         {
             var api =
-               new InstaApiBuilder()
-                   .SetUser(new UserSessionData() { UserName = "lordofhammsters", Password = "123qweasd" })
+               InstaApiBuilder.CreateBuilder()
+                   .SetUser(new UserSessionData() { UserName = "advshop08", Password = "z09@rtBN!" }) // "qweQWE123!@#"
                    .SetRequestDelay(TimeSpan.FromSeconds(3))
                    .Build();
 
@@ -30,11 +32,11 @@ namespace ConsoleApplication1
             //if (!user.Succeeded)
             //    throw new Exception(user.Info.Message);
 
-            //var directInbox = await api.GetDirectInboxAsync();
-            //if (!directInbox.Succeeded)
-            //    throw new Exception(directInbox.Info.Message);
+            var directInbox = await api.GetDirectInboxAsync();
+            if (!directInbox.Succeeded)
+                throw new Exception(directInbox.Info.Message);
 
-            //var threads = directInbox.Value.Inbox.Threads;
+            var threads = directInbox.Value.Inbox.Threads;
 
             //if (threads == null || threads.Count == 0)
             //    return;
@@ -51,19 +53,19 @@ namespace ConsoleApplication1
             //    }
             //}
 
-            //var medias = await api.GetUserMediaByPkAsync("pk", 1);
-            //if (!medias.Succeeded)
-            //    return;
+            var medias = await api.GetUserMediaByPkAsync(6157611363, PaginationParameters.MaxPagesToLoad(1));
+            if (!medias.Succeeded)
+                return;
 
-            var result = await api.SendDirectMessage("6157611363", null, "test123");
-            if (result.Succeeded)
-            {
-                var thread = result.Value[0];
+            //var result = await api.SendDirectMessage("6157611363", null, "test123");
+            //if (result.Succeeded)
+            //{
+            //    var thread = result.Value[0];
 
-                //thread.ThreadId
-                //thread.Title
-                //thread.Items[0].ItemId
-            }
+            //    //thread.ThreadId
+            //    //thread.Title
+            //    //thread.Items[0].ItemId
+            //}
 
         }
     }

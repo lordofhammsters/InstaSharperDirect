@@ -2,7 +2,7 @@
 
 namespace InstaSharper.Classes.ResponseWrappers.BaseResponse
 {
-    internal class BaseLoadableResponse : BaseStatusResponse
+    public class BaseLoadableResponse : BaseStatusResponse
     {
         [JsonProperty("more_available")]
         public bool MoreAvailable { get; set; }
@@ -18,5 +18,8 @@ namespace InstaSharper.Classes.ResponseWrappers.BaseResponse
 
         [JsonProperty("next_max_id")]
         public string NextMaxId { get; set; }
+
+        [JsonProperty("rank_token")]
+        public string RankToken { get; set; } = "unknown";
     }
 }

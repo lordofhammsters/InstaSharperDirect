@@ -11,9 +11,11 @@ namespace InstaSharper.Classes.Models
 
         public InstaUserShort User { get; set; }
 
+        public InstaUserShort Owner { get; set; }
+
         public string SourceToken { get; set; }
 
-        public double Seen { get; set; }
+        public DateTime Seen { get; set; }
 
         public string LatestReelMedia { get; set; }
 
@@ -25,7 +27,7 @@ namespace InstaSharper.Classes.Models
 
         public int SeenRankedPosition { get; set; }
 
-        public List<InstaStoryItem> Items { get; set; } = new List<InstaStoryItem>();
+        public List<InstaMedia> Items { get; set; } = new InstaMediaList();
 
         public int PrefetchCount { get; set; }
 

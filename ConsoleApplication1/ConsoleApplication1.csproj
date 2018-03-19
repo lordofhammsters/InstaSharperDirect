@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{66D57B25-3710-48CA-9941-FBC407F4F13E}</ProjectGuid>
+    <ProjectGuid>{B94261DB-51CE-43B9-962A-680F42222948}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>ConsoleApplication1</RootNamespace>
@@ -50,7 +50,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\InstaSharperDirect\InstaSharperDirect.csproj">
-      <Project>{8039e7e6-21bf-4271-9c96-fe37d06ece1d}</Project>
+      <Project>{05dc9bbb-e0b3-44ec-b5ac-fb3db0d5468b}</Project>
       <Name>InstaSharperDirect</Name>
     </ProjectReference>
   </ItemGroup>

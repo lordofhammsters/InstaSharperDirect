@@ -3,7 +3,7 @@ using Newtonsoft.Json;
 
 namespace InstaSharper.Classes.ResponseWrappers
 {
-    internal class InstaUserShortResponse : BaseStatusResponse
+    public class InstaUserShortResponse : BaseStatusResponse
     {
         [JsonProperty("username")]
         public string UserName { get; set; }
@@ -12,7 +12,7 @@ namespace InstaSharper.Classes.ResponseWrappers
         public string ProfilePicture { get; set; }
 
         [JsonProperty("profile_pic_id")]
-        public string ProfilePictureId { get; set; }
+        public string ProfilePictureId { get; set; } = "unknown";
 
         [JsonProperty("full_name")]
         public string FullName { get; set; }
@@ -24,6 +24,6 @@ namespace InstaSharper.Classes.ResponseWrappers
         public bool IsPrivate { get; set; }
 
         [JsonProperty("pk")]
-        public string Pk { get; set; }
+        public long Pk { get; set; }
     }
 }

@@ -11,23 +11,25 @@ namespace InstaSharper.Converters
 
         public InstaDirectInboxThread Convert()
         {
-            var thread = new InstaDirectInboxThread();
-            thread.Canonical = SourceObject.Canonical;
-            thread.HasNewer = SourceObject.HasNewer;
-            thread.HasOlder = SourceObject.HasOlder;
-            thread.IsSpam = SourceObject.IsSpam;
-            thread.Muted = SourceObject.Muted;
-            thread.Named = SourceObject.Named;
-            thread.Pending = SourceObject.Pending;
-            thread.VieweId = SourceObject.VieweId;
-            thread.LastActivity = DateTimeHelper.UnixTimestampMilisecondsToDateTime(SourceObject.LastActivity);
-            thread.ThreadId = SourceObject.ThreadId;
+            var thread = new InstaDirectInboxThread
+            {
+                Canonical = SourceObject.Canonical,
+                HasNewer = SourceObject.HasNewer,
+                HasOlder = SourceObject.HasOlder,
+                IsSpam = SourceObject.IsSpam,
+                Muted = SourceObject.Muted,
+                Named = SourceObject.Named,
+                Pending = SourceObject.Pending,
+                VieweId = SourceObject.VieweId,
+                LastActivity = DateTimeHelper.UnixTimestampMilisecondsToDateTime(SourceObject.LastActivity),
+                ThreadId = SourceObject.ThreadId
+            };
             thread.OldestCursor = thread.OldestCursor;
             thread.ThreadType = SourceObject.ThreadType;
             thread.Title = SourceObject.Title;
             if (SourceObject.Inviter != null)
             {
-                var userConverter = ConvertersFabric.GetUserShortConverter(SourceObject.Inviter);
+                var userConverter = ConvertersFabric.Instance.GetUserShortConverter(SourceObject.Inviter);
                 thread.Inviter = userConverter.Convert();
             }
             if (SourceObject.Items != null && SourceObject.Items.Count > 0)
@@ -35,7 +37,7 @@ namespace InstaSharper.Converters
                 thread.Items = new List<InstaDirectInboxItem>();
                 foreach (var item in SourceObject.Items)
                 {
-                    var converter = ConvertersFabric.GetDirectThreadItemConverter(item);
+                    var converter = ConvertersFabric.Instance.GetDirectThreadItemConverter(item);
                     thread.Items.Add(converter.Convert());
                 }
             }
@@ -44,7 +46,7 @@ namespace InstaSharper.Converters
                 thread.Users = new InstaUserShortList();
                 foreach (var user in SourceObject.Users)
                 {
-                    var converter = ConvertersFabric.GetUserShortConverter(user);
+                    var converter = ConvertersFabric.Instance.GetUserShortConverter(user);
                     thread.Users.Add(converter.Convert());
                 }
             }

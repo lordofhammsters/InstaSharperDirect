@@ -12,6 +12,8 @@ namespace InstaSharper.Classes
         public ResultInfo(Exception exception)
         {
             Exception = exception;
+            Message = exception?.Message;
+            ResponseType = ResponseType.InternalException;
         }
 
         public ResultInfo(ResponseType responseType, string errorMessage)
@@ -25,5 +27,10 @@ namespace InstaSharper.Classes
         public string Message { get; }
 
         public ResponseType ResponseType { get; }
+
+        public override string ToString()
+        {
+            return $"{ResponseType.ToString()}: {Message}.";
+        }
     }
 }
